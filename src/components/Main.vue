@@ -9,7 +9,11 @@
               <ul>
                   <li>{{film.title}}</li>
                   <li>{{film.original_title}}</li>
-                  <li>{{film.original_language}}</li>
+                  <li>
+                      <span v-if="film.original_language == 'it'"><img src="../images/it.png" alt="it"></span>
+                      <span v-else-if="film.original_language == 'en'"><img src="../images/en.png" alt="en"></span>
+                      <span v-else>{{film.original_language}}</span>
+                  </li>
                   <li>{{film.vote_average}}</li>
               </ul>
           </div>
@@ -56,6 +60,10 @@ export default {
 
         div {
             width: calc(100% / 5 - 40px);
+
+            img {
+                width: 40px;
+            }
         }
     }
 </style>
