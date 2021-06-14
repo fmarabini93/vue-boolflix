@@ -4,17 +4,18 @@
           <input type="text" placeholder="Type to search your film" v-model="searchText" @keyup.enter="generateResults">
           <button @click="generateResults">Search</button>
       </div>
-      <div id="search-result">
-            <h1 class="text-uppercase" v-if="films.length > 0">Films</h1>
+      <div id="search-result" class="text-center">
+            <h1 class="text-uppercase mt-5" v-if="films.length > 0">Films</h1>
             <div id="filmList" class="d-flex justify-content-around flex-wrap" v-if="films.length > 0">
                 <div v-for="film in films" :key=film.id class="m-3 card">
-                    <ul>
+                    <ul class="list-unstyled py-3">
+                        <li><img :src="'https://image.tmdb.org/t/p/w342'+film.poster_path" :alt="film.overview"></li>
                         <li>{{film.title}}</li>
-                        <li>{{film.original_title}}</li>
+                        <li v-if="film.title != film.original_title">{{film.original_title}}</li>
                         <li>
-                            <span v-if="film.original_language == 'it'"><img src="../images/it.png" alt="it"></span>
-                            <span v-else-if="film.original_language == 'en'"><img src="../images/en.png" alt="en"></span>
-                            <span v-else>{{film.original_language}}</span>
+                            <span v-if="film.original_language == 'it'"><img class="flag" src="../images/it.png" alt="it"></span>
+                            <span v-else-if="film.original_language == 'en'"><img class="flag" src="../images/en.png" alt="en"></span>
+                            <span v-else class="text-uppercase">{{film.original_language}}</span>
                         </li>
                         <li>
                             <span v-if="film.vote_average != '0'">{{film.vote_average}}</span>
@@ -23,16 +24,17 @@
                     </ul>
                 </div>
             </div>
-            <h1 class="text-uppercase" v-if="series.length > 0">Series</h1>
+            <h1 class="text-uppercase mt-5" v-if="series.length > 0">Series</h1>
             <div id="seriesList" class="d-flex justify-content-around flex-wrap" v-if="series.length > 0">
                 <div v-for="serie in series" :key=serie.id class="m-3 card">
-                    <ul>
+                    <ul class="list-unstyled py-3">
+                        <li><img :src="'https://image.tmdb.org/t/p/w342'+serie.poster_path" :alt="serie.overview"></li>
                         <li>{{serie.name}}</li>
-                        <li>{{serie.original_name}}</li>
+                        <li v-if="serie.name != serie.original_name">{{serie.original_name}}</li>
                         <li>
-                            <span v-if="serie.original_language == 'it'"><img src="../images/it.png" alt="it"></span>
-                            <span v-else-if="serie.original_language == 'en'"><img src="../images/en.png" alt="en"></span>
-                            <span v-else>{{serie.original_language}}</span>
+                            <span v-if="serie.original_language == 'it'"><img class="flag" src="../images/it.png" alt="it"></span>
+                            <span v-else-if="serie.original_language == 'en'"><img class="flag" src="../images/en.png" alt="en"></span>
+                            <span v-else class="text-uppercase">{{serie.original_language}}</span>
                         </li>
                         <li>
                             <span v-if="serie.vote_average != '0'">{{serie.vote_average}}</span>
@@ -93,9 +95,14 @@ export default {
         height: calc(100vh - 70px);
 
         .card {
-            width: calc(100% / 5 - 40px);
+            width: calc(100% / 3 - 40px);
 
-            img {
+            li {
+                display: block;
+                padding: 5px 0;
+            }
+
+            .flag {
                 width: 40px;
             }
         }
