@@ -1,11 +1,11 @@
 <template>
   <main>
       <div id="search-bar" class="d-flex p-3">
-          <input type="text" placeholder="Type to search your film" v-model="searchText">
+          <input type="text" placeholder="Type to search your film" v-model="searchText" @keyup.enter="generateResults">
           <button @click="generateResults">Search</button>
       </div>
       <div id="search-result" class="d-flex justify-content-around flex-wrap">
-          <div v-for="film in films" :key=film.id>
+          <div v-for="film in films" :key=film.id class="m-3">
               <ul>
                   <li>{{film.title}}</li>
                   <li>{{film.original_title}}</li>
@@ -36,6 +36,7 @@ export default {
             })
             .then ((response) => {
                 this.films = response.data.results;
+                this.searchText = "";
             })
         }
     }
@@ -50,7 +51,11 @@ export default {
             flex-grow: 1;
         }
     }
-    #search-results {
+    #search-result {
         height: calc(100vh - 70px);
+
+        div {
+            width: calc(100% / 5 - 40px);
+        }
     }
 </style>
