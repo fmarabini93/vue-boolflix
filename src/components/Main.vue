@@ -16,7 +16,10 @@
                             <span v-else-if="film.original_language == 'en'"><img src="../images/en.png" alt="en"></span>
                             <span v-else>{{film.original_language}}</span>
                         </li>
-                        <li>{{film.vote_average}}</li>
+                        <li>
+                            <span v-if="film.vote_average != '0'">{{film.vote_average}}</span>
+                            <span v-else>0 votes</span>
+                        </li>
                     </ul>
                 </div>
             </div>
@@ -31,7 +34,10 @@
                             <span v-else-if="serie.original_language == 'en'"><img src="../images/en.png" alt="en"></span>
                             <span v-else>{{serie.original_language}}</span>
                         </li>
-                        <li>{{serie.vote_average}}</li>
+                        <li>
+                            <span v-if="serie.vote_average != '0'">{{serie.vote_average}}</span>
+                            <span v-else>0 votes</span>
+                        </li>
                     </ul>
                 </div>
             </div>
