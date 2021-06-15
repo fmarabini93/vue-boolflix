@@ -10,7 +10,7 @@
       <div id="search-result" class="text-center">
             <h1 class="text-uppercase mt-5 fw-bold" v-if="films.length > 0">Films</h1>
             <div id="filmList" class="d-flex justify-content-around flex-wrap" v-if="films.length > 0">
-                <div v-for="film in films" :key=film.id :style='{backgroundImage: `url(https://image.tmdb.org/t/p/w342${film.poster_path}`}' class="m-3 card position-relative overflow-auto">
+                <div v-for="film in films" :key=film.id :style='{backgroundImage: `url(https://image.tmdb.org/t/p/w342${film.poster_path}`}' class="m-3 card position-relative overflow-auto border border-danger">
                     <div class="layover position-absolute top-0 start-0 hidden">
                         <ul class="list-unstyled py-3 position-absolute top-0 start-50 translate-middle-x hidden">
                             <li class="fw-bold text-uppercase fs-3">{{film.title}}</li>
@@ -35,7 +35,7 @@
             </div>
             <h1 class="text-uppercase mt-5 fw-bold" v-if="series.length > 0">Series</h1>
             <div id="seriesList" class="d-flex justify-content-around flex-wrap" v-if="series.length > 0">
-                <div v-for="serie in series" :key=serie.id :style='{backgroundImage: `url(https://image.tmdb.org/t/p/w342${serie.poster_path}`}' class="m-3 card position-relative overflow-auto">
+                <div v-for="serie in series" :key=serie.id :style='{backgroundImage: `url(https://image.tmdb.org/t/p/w342${serie.poster_path}`}' class="m-3 card position-relative overflow-auto border border-danger">
                     <div class="layover position-absolute top-0 start-0 hidden">
                         <ul class="list-unstyled py-3 position-absolute top-0 start-50 translate-middle-x hidden">
                             <li class="fw-bold text-uppercase fs-3">{{serie.name}}</li>
@@ -131,7 +131,6 @@ export default {
         .card {
             width: 342px;
             height: 513px;
-            border: none;
             color: #ffffff;
             background: transparent;
 
