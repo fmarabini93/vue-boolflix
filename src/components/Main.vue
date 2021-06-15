@@ -10,12 +10,11 @@
       <div id="search-result" class="text-center">
             <h1 class="text-uppercase mt-5 fw-bold" v-if="films.length > 0">Films</h1>
             <div id="filmList" class="d-flex justify-content-around flex-wrap" v-if="films.length > 0">
-                <div v-for="film in films" :key=film.id class="m-3 card position-relative">
-                    <img :src="'https://image.tmdb.org/t/p/w342'+film.poster_path" :alt="'Poster unavaliable'">
+                <div v-for="film in films" :key=film.id :style='{backgroundImage: `url(https://image.tmdb.org/t/p/w342${film.poster_path}`}' class="m-3 card position-relative overflow-auto">
                     <div class="layover position-absolute top-0 start-0 hidden">
-                        <ul class="list-unstyled py-3 position-absolute top-50 start-50 translate-middle hidden">
-                            <li class="fw-bold text-uppercase fs-1">{{film.title}}</li>
-                            <li v-if="film.title != film.original_title" class="fst-italic fs-3">{{film.original_title}}</li>
+                        <ul class="list-unstyled py-3 position-absolute top-0 start-50 translate-middle-x hidden">
+                            <li class="fw-bold text-uppercase fs-3">{{film.title}}</li>
+                            <li v-if="film.title != film.original_title" class="fst-italic fs-4">{{film.original_title}}</li>
                             <li>
                                 <span v-if="film.original_language == 'it'"><img class="flag" src="../images/it.png" alt="it"></span>
                                 <span v-else-if="film.original_language == 'en'"><img class="flag" src="../images/en.png" alt="en"></span>
@@ -25,8 +24,8 @@
                             <li>
                                 <span>
                                     <ul v-if="film.vote_average != '0'" class="list-unstyled py-3">
-                                        <li class="d-inline-block px-3" v-for="star,index in convertVote(film.vote_average)" :key="index"><i class="fas fa-star"></i></li>
-                                        <li class="d-inline-block px-3" v-for="star,index in 5 - convertVote(film.vote_average).length" :key="index"><i class="far fa-star"></i></li>
+                                        <li class="d-inline-block px-1" v-for="star,index in convertVote(film.vote_average)" :key="index"><i class="fas fa-star"></i></li>
+                                        <li class="d-inline-block px-1" v-for="star,index in 5 - convertVote(film.vote_average).length" :key="index"><i class="far fa-star"></i></li>
                                     </ul>
                                 </span>
                             </li>
@@ -36,12 +35,11 @@
             </div>
             <h1 class="text-uppercase mt-5 fw-bold" v-if="series.length > 0">Series</h1>
             <div id="seriesList" class="d-flex justify-content-around flex-wrap" v-if="series.length > 0">
-                <div v-for="serie in series" :key=serie.id class="m-3 card position-relative overflow-auto">
-                    <img :src="'https://image.tmdb.org/t/p/w342'+serie.poster_path" :alt="'Poster unavaliable'">
+                <div v-for="serie in series" :key=serie.id :style='{backgroundImage: `url(https://image.tmdb.org/t/p/w342${serie.poster_path}`}' class="m-3 card position-relative overflow-auto">
                     <div class="layover position-absolute top-0 start-0 hidden">
-                        <ul class="list-unstyled py-3 position-absolute top-50 start-50 translate-middle hidden">
-                            <li class="fw-bold text-uppercase fs-1">{{serie.name}}</li>
-                            <li v-if="serie.name != serie.original_name">{{serie.original_name}}</li>
+                        <ul class="list-unstyled py-3 position-absolute top-0 start-50 translate-middle-x hidden">
+                            <li class="fw-bold text-uppercase fs-3">{{serie.name}}</li>
+                            <li v-if="serie.name != serie.original_name" class="fs-4">{{serie.original_name}}</li>
                             <li>
                                 <span v-if="serie.original_language == 'it'"><img class="flag" src="../images/it.png" alt="it"></span>
                                 <span v-else-if="serie.original_language == 'en'"><img class="flag" src="../images/en.png" alt="en"></span>
@@ -125,14 +123,14 @@ export default {
     }
 
     #search-result {
-        height: calc(100vh - 70px);
 
         h1 {
             color: #dc1a28;
         }
 
         .card {
-            width: calc(100% / 3 - 40px);
+            width: 342px;
+            height: 513px;
             border: none;
             color: #ffffff;
             background: transparent;
