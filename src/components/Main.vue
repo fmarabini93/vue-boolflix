@@ -20,6 +20,11 @@
                         <li>
                             <span v-if="film.vote_average != '0'">{{film.vote_average}}</span>
                             <span v-else>0 votes</span>
+                            <span>
+                                <ul class="list-unstyled py-3">
+                                    <li class="d-inline-block px-3" v-for="star,index in convertVote(film.vote_average)" :key="index"><i class="fas fa-star"></i></li>
+                                </ul>
+                            </span>
                         </li>
                     </ul>
                 </div>
@@ -39,6 +44,11 @@
                         <li>
                             <span v-if="serie.vote_average != '0'">{{serie.vote_average}}</span>
                             <span v-else>0 votes</span>
+                            <span>
+                                <ul class="list-unstyled py-3">
+                                    <li class="d-inline-block px-3" v-for="star,index in convertVote(serie.vote_average)" :key="index"><i class="fas fa-star"></i></li>
+                                </ul>
+                            </span>
                         </li>
                     </ul>
                 </div>
@@ -78,6 +88,9 @@ export default {
                 this.series = response.data.results;
                 this.searchText = "";
             })
+        },
+        convertVote (vote) {
+            return new Array(Math.round(vote / 2));
         }
     }
 }
