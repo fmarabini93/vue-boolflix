@@ -10,9 +10,9 @@
       <div id="search-result" class="text-center">
             <h1 class="text-uppercase mt-5 fw-bold" v-if="films.length > 0">Films</h1>
             <div id="filmList" class="d-flex justify-content-around flex-wrap" v-if="films.length > 0">
-                <div v-for="film in films" :key=film.id :style='{backgroundImage: `url(https://image.tmdb.org/t/p/w342${film.poster_path}`}' class="m-3 card position-relative overflow-auto border-0">
+                <div v-for="film in films" :key=film.id :style='{backgroundImage: `url(https://image.tmdb.org/t/p/w342${film.poster_path}`}' class="m-3 card position-relative border-0">
                     <h1 v-if="film.poster_path == null" class="position-absolute top-50 start-50 translate-middle">Poster unavaliable</h1>
-                    <div class="layover position-absolute top-0 start-0 hidden">
+                    <div class="layover position-absolute top-0 start-0 overflow-auto hidden">
                         <ul class="list-unstyled py-3 position-absolute top-0 start-50 translate-middle-x hidden">
                             <li class="fw-bold text-uppercase fs-3">{{film.title}}</li>
                             <li v-if="film.title != film.original_title" class="fst-italic fs-4">{{film.original_title}}</li>
@@ -36,9 +36,9 @@
             </div>
             <h1 class="text-uppercase mt-5 fw-bold" v-if="series.length > 0">Series</h1>
             <div id="seriesList" class="d-flex justify-content-around flex-wrap" v-if="series.length > 0">
-                <div v-for="serie in series" :key=serie.id :style='{backgroundImage: `url(https://image.tmdb.org/t/p/w342${serie.poster_path}`}' class="m-3 card position-relative overflow-auto border-0">
+                <div v-for="serie in series" :key=serie.id :style='{backgroundImage: `url(https://image.tmdb.org/t/p/w342${serie.poster_path}`}' class="m-3 card position-relative border-0">
                 <h1 v-if="serie.poster_path == null" class="position-absolute top-50 start-50 translate-middle">Poster unavaliable</h1>
-                    <div class="layover position-absolute top-0 start-0 hidden">
+                    <div class="layover position-absolute top-0 start-0 overflow-auto hidden">
                         <ul class="list-unstyled py-3 position-absolute top-0 start-50 translate-middle-x hidden">
                             <li class="fw-bold text-uppercase fs-3">{{serie.name}}</li>
                             <li v-if="serie.name != serie.original_name" class="fs-4">{{serie.original_name}}</li>
@@ -106,14 +106,15 @@ export default {
 <style lang="scss">
 @import '~bootstrap/scss/bootstrap.scss';
     #top-bar {
+
+        div {
+            opacity: 0.7;
+        }
         input {
             height: 50px;
             outline: none;
+            color: $light;
             background: transparent;
-
-        ::placeholder {
-            color: $red;
-        }
         }
         
         button {
@@ -121,6 +122,7 @@ export default {
             margin-left: 20px;
             outline: none;
             cursor: pointer;
+            color: $light;
             background: transparent;
         }
     }
@@ -149,7 +151,7 @@ export default {
             .layover {
                 width: 100%;
                 height: 100%;
-                background-color: rgba(0,0,0,0.7);
+                background-color: rgba($dark,0.8);
             }
 
             li {
@@ -164,6 +166,7 @@ export default {
         }
         .card:hover {
             .hidden {
+                cursor: pointer;
                 opacity: 1;
                 transition: 0.5s;
             }
