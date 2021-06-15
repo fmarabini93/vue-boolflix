@@ -19,10 +19,10 @@
                         </li>
                         <li>
                             <span v-if="film.vote_average != '0'">{{film.vote_average}}</span>
-                            <span v-else>0 votes</span>
                             <span>
-                                <ul class="list-unstyled py-3">
+                                <ul v-if="film.vote_average != '0'" class="list-unstyled py-3">
                                     <li class="d-inline-block px-3" v-for="star,index in convertVote(film.vote_average)" :key="index"><i class="fas fa-star"></i></li>
+                                    <li class="d-inline-block px-3" v-for="star,index in 5 - convertVote(film.vote_average).length" :key="index"><i class="far fa-star"></i></li>
                                 </ul>
                             </span>
                         </li>
@@ -43,10 +43,10 @@
                         </li>
                         <li>
                             <span v-if="serie.vote_average != '0'">{{serie.vote_average}}</span>
-                            <span v-else>0 votes</span>
                             <span>
-                                <ul class="list-unstyled py-3">
+                                <ul v-if="serie.vote_average != '0'" class="list-unstyled py-3">
                                     <li class="d-inline-block px-3" v-for="star,index in convertVote(serie.vote_average)" :key="index"><i class="fas fa-star"></i></li>
+                                    <li class="d-inline-block px-3" v-for="star,index in 5 - convertVote(serie.vote_average).length" :key="index"><i class="far fa-star"></i></li>
                                 </ul>
                             </span>
                         </li>
@@ -112,7 +112,7 @@ export default {
 
             li {
                 display: block;
-                padding: 5px 0;
+                padding: 10px 0;
             }
 
             .flag {
