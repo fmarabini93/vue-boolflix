@@ -10,7 +10,8 @@
       <div id="search-result" class="text-center">
             <h1 class="text-uppercase mt-5 fw-bold" v-if="films.length > 0">Films</h1>
             <div id="filmList" class="d-flex justify-content-around flex-wrap" v-if="films.length > 0">
-                <div v-for="film in films" :key=film.id :style='{backgroundImage: `url(https://image.tmdb.org/t/p/w342${film.poster_path}`}' class="m-3 card position-relative overflow-auto border border-danger">
+                <div v-for="film in films" :key=film.id :style='{backgroundImage: `url(https://image.tmdb.org/t/p/w342${film.poster_path}`}' class="m-3 card position-relative overflow-auto border-0">
+                    <h1 v-if="film.poster_path == null" class="position-absolute top-50 start-50 translate-middle">Poster unavaliable</h1>
                     <div class="layover position-absolute top-0 start-0 hidden">
                         <ul class="list-unstyled py-3 position-absolute top-0 start-50 translate-middle-x hidden">
                             <li class="fw-bold text-uppercase fs-3">{{film.title}}</li>
@@ -35,7 +36,8 @@
             </div>
             <h1 class="text-uppercase mt-5 fw-bold" v-if="series.length > 0">Series</h1>
             <div id="seriesList" class="d-flex justify-content-around flex-wrap" v-if="series.length > 0">
-                <div v-for="serie in series" :key=serie.id :style='{backgroundImage: `url(https://image.tmdb.org/t/p/w342${serie.poster_path}`}' class="m-3 card position-relative overflow-auto border border-danger">
+                <div v-for="serie in series" :key=serie.id :style='{backgroundImage: `url(https://image.tmdb.org/t/p/w342${serie.poster_path}`}' class="m-3 card position-relative overflow-auto border-0">
+                <h1 v-if="serie.poster_path == null" class="position-absolute top-50 start-50 translate-middle">Poster unavaliable</h1>
                     <div class="layover position-absolute top-0 start-0 hidden">
                         <ul class="list-unstyled py-3 position-absolute top-0 start-50 translate-middle-x hidden">
                             <li class="fw-bold text-uppercase fs-3">{{serie.name}}</li>
@@ -102,6 +104,7 @@ export default {
 </script>
 
 <style lang="scss">
+@import '~bootstrap/scss/bootstrap.scss';
     #top-bar {
         input {
             height: 50px;
@@ -109,7 +112,7 @@ export default {
             background: transparent;
 
         ::placeholder {
-            color: #dc1a28;
+            color: $red;
         }
         }
         
@@ -125,14 +128,19 @@ export default {
     #search-result {
 
         h1 {
-            color: #dc1a28;
+            color: $light;
         }
 
         .card {
             width: 342px;
             height: 513px;
+            box-shadow: 1px 1px 3px 1px $red;
             color: #ffffff;
             background: transparent;
+
+            h1 {
+                color: $light;
+            }
 
             .hidden {
                 opacity: 0;
@@ -147,7 +155,7 @@ export default {
             li {
                 display: block;
                 padding: 10px 0;
-                color: #ffffff;
+                color: $light;
             }
 
             .flag {

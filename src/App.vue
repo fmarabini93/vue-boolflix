@@ -19,8 +19,9 @@ export default {
 <style lang="scss">
 @import '~@fortawesome/fontawesome-free/css/all.min.css';
 @import '~bootstrap/scss/bootstrap.scss';
+$red: #dc1a28;
 
   body {
-    background-color: #2c2c2c;
+    background-color: $dark;
   }
 </style>
