@@ -29,7 +29,7 @@
 
             <p v-if="item.genres.length > 0" class="fw-bold">Associated genres:</p>
             <ul v-if="item.genres.length > 0" id="genreList" class="list-unstyled">
-                <li v-for="genre,index in item.genres" :key="index" class="d-inline-block px-2">{{genre.name}}</li>
+                <li v-for="genre,index in item.genres" :key="index" class="d-inline-block px-1">{{genre.name}}</li>
             </ul>
 
         </div>
