@@ -34,7 +34,6 @@ export default {
       .then ((response) => {
         this.films = response.data.results;
         this.getCast(this.films);
-        this.text = "";
       })
       axios.get("https://api.themoviedb.org/3/search/tv?api_key=3631644459350f4e726e4df8e272a6b8&", {
         params: {
@@ -44,8 +43,10 @@ export default {
       .then ((response) => {
         this.series = response.data.results;
         this.getCast(this.series);
-        this.text = "";
       })
+    this.filmsWCast = this.films;
+    this.seriesWCast = this.series;
+    this.text = "";
     },
     getCast(array) {
       array.forEach(
@@ -54,13 +55,11 @@ export default {
             axios.get(`https://api.themoviedb.org/3/movie/${element.id}/credits?api_key=3631644459350f4e726e4df8e272a6b8`)
             .then ((response) => {
               this.films[index].cast = response.data.cast.slice(0, 5);
-              this.filmsWCast = this.films;
             })
           } else {
             axios.get(`https://api.themoviedb.org/3/tv/${element.id}/credits?api_key=3631644459350f4e726e4df8e272a6b8`)
             .then ((response) => {
               this.series[index].cast = response.data.cast.slice(0, 5);
-              this.seriesWCast = this.series;
             }
             )}
       })
