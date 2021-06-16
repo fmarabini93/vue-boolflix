@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <Header @passText='generateResults'/>
+    <Header @passText='generateResults' :fGenList='filmGenresList' :tvGenList='tvGenresList'/>
     <Main :filmList='filmsWCastGenres' :serieList='seriesWCastGenres'/>
   </div>
 </template>
@@ -20,6 +20,8 @@ export default {
     return {
       films: [],
       series: [],
+      filmGenresList: [],
+      tvGenresList: [],
       filmsWCastGenres: [],
       seriesWCastGenres: []
     }
@@ -81,6 +83,16 @@ export default {
             )}
         })
     }
+  },
+  created() {
+    axios.get("https://api.themoviedb.org/3/genre/movie/list?api_key=3631644459350f4e726e4df8e272a6b8")
+      .then((response) => {
+        this.filmGenresList = response.data.genres;
+      })
+      axios.get("https://api.themoviedb.org/3/genre/tv/list?api_key=3631644459350f4e726e4df8e272a6b8")
+      .then((response) => {
+        this.tvGenresList = response.data.genres;
+      })
   }
 }
 </script>
