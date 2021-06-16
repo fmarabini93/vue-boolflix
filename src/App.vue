@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <Header @passText='generateResults'/>
-    <Main :filmList='filmsWCast' :serieList='seriesWCast'/>
+    <Main :filmList='filmsWCastGenres' :serieList='seriesWCastGenres'/>
   </div>
 </template>
 
@@ -20,8 +20,8 @@ export default {
     return {
       films: [],
       series: [],
-      filmsWCast: [],
-      seriesWCast: []
+      filmsWCastGenres: [],
+      seriesWCastGenres: []
     }
   },
   methods: {
@@ -34,6 +34,7 @@ export default {
       .then ((response) => {
         this.films = response.data.results;
         this.getCast(this.films);
+        this.getGenres(this.films);
       })
       axios.get("https://api.themoviedb.org/3/search/tv?api_key=3631644459350f4e726e4df8e272a6b8&", {
         params: {
@@ -43,9 +44,10 @@ export default {
       .then ((response) => {
         this.series = response.data.results;
         this.getCast(this.series);
+        this.getGenres(this.series);
       })
-    this.filmsWCast = this.films;
-    this.seriesWCast = this.series;
+    this.filmsWCastGenres = this.films;
+    this.seriesWCastGenres = this.series;
     this.text = "";
     },
     getCast(array) {
@@ -63,6 +65,22 @@ export default {
             }
             )}
       })
+    },
+    getGenres(array) {
+      array.forEach(
+        (element,index) => {
+          if (element.original_title) {
+            axios.get(`https://api.themoviedb.org/3/movie/${element.id}?api_key=3631644459350f4e726e4df8e272a6b8`)
+            .then ((response) => {
+              this.films[index].genres = response.data.genres;
+            })
+          } else {
+            axios.get(`https://api.themoviedb.org/3/tv/${element.id}?api_key=3631644459350f4e726e4df8e272a6b8`)
+            .then ((response) => {
+              this.series[index].genres = response.data.genres;
+            }
+            )}
+        })
     }
   }
 }

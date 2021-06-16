@@ -4,7 +4,6 @@
     <section :style='{backgroundImage: `url(https://image.tmdb.org/t/p/w342${item.poster_path}`}' class="m-3 card position-relative border-0">
         <h1 v-if="item.poster_path == null" class="position-absolute top-50 start-50 translate-middle">Poster unavaliable</h1>
     <!-- /Item poster -->
-        
         <!-- Item details -->
         <div class="layover position-absolute top-0 start-0 overflow-auto hidden">
             <h2>{{item.title ? item.title : item.name}}</h2>
@@ -25,6 +24,13 @@
                 <li class="d-inline-block px-1" v-for="star,index in 5 - convertVote(item.vote_average).length" :key="index"><i class="far fa-star"></i></li>
             </ul>
             <!-- /Convert vote into stars -->
+
+            <hr v-if="item.genres.length > 0">
+
+            <p v-if="item.genres.length > 0" class="fw-bold">Associated genres:</p>
+            <ul v-if="item.genres.length > 0" id="genreList" class="list-unstyled">
+                <li v-for="genre,index in item.genres" :key="index" class="d-inline-block px-2">{{genre.name}}</li>
+            </ul>
 
         </div>
         <!-- /Item details -->
@@ -82,7 +88,13 @@ export default {
             hr {
                 width: 70%;
                 height: 2px;
-                margin: 0 auto;
+                margin: 10px auto;
+            }
+
+            #genreList {
+                li:not(:last-child)::after {
+                    content: " ,";
+                }
             }
         }
         .card:hover {
