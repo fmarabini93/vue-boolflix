@@ -51,12 +51,12 @@ export default {
           if (element.original_title) {
             axios.get(`https://api.themoviedb.org/3/movie/${element.id}/credits?api_key=3631644459350f4e726e4df8e272a6b8`)
             .then ((response) => {
-              this.films[index].cast = (response.data.cast);
+              this.films[index].cast = (response.data.cast.slice(0, 5));
             })
           } else {
             axios.get(`https://api.themoviedb.org/3/tv/${element.id}/credits?api_key=3631644459350f4e726e4df8e272a6b8`)
             .then ((response) => {
-              this.series[index].cast = (response.data.cast);
+              this.series[index].cast = (response.data.cast.slice(0, 5));
             }
             )}
       })
