@@ -37,7 +37,7 @@ export default {
             height: 50px;
             outline: none;
             cursor: pointer;
-            color: $light;
+            color: $red;
             background: transparent;
         }
     }

@@ -48,7 +48,6 @@ export default {
       })
     this.filmsWCastGenres = this.films;
     this.seriesWCastGenres = this.series;
-    this.text = "";
     },
     getCast(array) {
       array.forEach(
