@@ -12,6 +12,7 @@
             <img v-if="flags.includes(item.original_language)" class="flag" :src="require(`../images/${item.original_language}.png`)" alt="`flag ${item.original_language}`">
             <p v-else class="text-uppercase">{{item.original_language}}</p>
             <p>{{item.overview}}</p>
+            <p></p>
 
             <!-- Convert vote into stars -->
             <ul v-if="item.vote_average != '0'" class="list-unstyled py-3">
