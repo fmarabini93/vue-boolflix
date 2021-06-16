@@ -35,7 +35,6 @@ export default {
         
         button {
             height: 50px;
-            margin-left: 20px;
             outline: none;
             cursor: pointer;
             color: $light;
