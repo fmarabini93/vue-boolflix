@@ -1,11 +1,11 @@
 <template>
     <main class="text-center">
-        <section v-if="filteredFilms.length > 0" class="d-flex justify-content-around flex-wrap">
-            <h1 class="text-uppercase">Films</h1>
+        <section v-if="filmList.length > 0" class="d-flex justify-content-around flex-wrap">
+            <h1 v-show="filteredFilms.length > 0" class="text-uppercase">Films</h1>
             <Card v-for="film in filterFilmsByGenre(currentFilmGenre)" :key="film.id" :item="film"/>
         </section>
-        <section v-if="filteredSeries.length > 0" class="d-flex justify-content-around flex-wrap">
-            <h1 class="text-uppercase">Series</h1>
+        <section v-if="serieList.length > 0" class="d-flex justify-content-around flex-wrap p-5">
+            <h1 v-show="filteredSeries.length > 0" class="text-uppercase">Series</h1>
             <Card v-for="serie in filterSeriesByGenre(currentSerieGenre)" :key="serie.id" :item="serie"/>
         </section>
     </main>

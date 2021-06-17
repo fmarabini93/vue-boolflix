@@ -20,7 +20,7 @@
 
             <!-- Convert vote into stars -->
             <ul v-if="item.vote_average != '0'" class="list-unstyled py-3">
-                <li class="d-inline-block px-1" v-for="star,index in convertVote(item.vote_average)" :key="index"><i class="fas fa-star"></i></li>
+                <li class="d-inline-block px-1" v-for="star,index in convertVote(item.vote_average)" :key="`full ${index}`"><i class="fas fa-star"></i></li>
                 <li class="d-inline-block px-1" v-for="star,index in 5 - convertVote(item.vote_average).length" :key="index"><i class="far fa-star"></i></li>
             </ul>
             <!-- /Convert vote into stars -->
