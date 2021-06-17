@@ -2,12 +2,12 @@
     <header class="d-flex justify-content-between align-items-center p-3">
         <img src="../images/logo.png" alt="Logo">
         <div>
-            <select class="border border-danger" @change="$emit('passFilmGenre', selectedFilmGenre)" v-model="selectedFilmGenre">
-                <option disabled selected>Filter films by genre</option>
+            <label for="films">Filter films by genre:</label>
+            <select name="films" class="border border-danger" @change="$emit('passFilmGenre', selectedFilmGenre)" v-model="selectedFilmGenre">
                 <option v-for="genre,index in fGenList" :key="index">{{genre.name}}</option>
             </select>
-            <select class="border border-danger" @change="$emit('passTVGenre', selectedTVGenre)" v-model="selectedTVGenre">
-                <option disabled selected>Filter series by genre</option>
+            <label for="series">Filter series by genre:</label>
+            <select name="series" class="border border-danger" @change="$emit('passTVGenre', selectedTVGenre)" v-model="selectedTVGenre">
                 <option v-for="genre,index in tvGenList" :key="index">{{genre.name}}</option>
             </select>
         </div>
@@ -41,6 +41,7 @@ export default {
 
         div {
             opacity: 0.7;
+            color: $light;
         }
         input {
             height: 50px;
