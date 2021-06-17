@@ -1,15 +1,14 @@
 <template>
-    <main v-if="filmList.length > 0 || serieList.length > 0" class="text-center">
-        <section v-if="filmList.length > 0" class="d-flex justify-content-around flex-wrap">
+    <main class="text-center">
+        <section v-if="filteredFilms.length > 0" class="d-flex justify-content-around flex-wrap">
             <h1 class="text-uppercase">Films</h1>
-            <Card v-for="film in filmList" :key="film.id" :item="film"/>
+            <Card v-for="film in filterFilmsByGenre(currentFilmGenre)" :key="film.id" :item="film"/>
         </section>
-        <section v-if="serieList.length > 0" class="d-flex justify-content-around flex-wrap">
+        <section v-if="filteredSeries.length > 0" class="d-flex justify-content-around flex-wrap">
             <h1 class="text-uppercase">Series</h1>
-            <Card v-for="serie in serieList" :key="serie.id" :item="serie"/>
+            <Card v-for="serie in filterSeriesByGenre(currentSerieGenre)" :key="serie.id" :item="serie"/>
         </section>
     </main>
-    <h1 v-else>Your search didn't match anything</h1>
 </template>
 
 <script>
@@ -20,9 +19,33 @@ export default {
     components: {
         Card
     },
+    data() {
+        return {
+            filteredFilms: [],
+            filteredSeries: []
+        }
+    },  
     props: {
         filmList: Array,
-        serieList: Array
+        serieList: Array,
+        currentFilmGenre: String,
+        currentSerieGenre: String
+    },
+    methods: {
+        filterFilmsByGenre(string) {
+            if (string == "") {
+                return this.filteredFilms = this.filmList;
+            } else {
+                return this.filteredFilms = this.filmList.filter((element) => element.genres.map((item) => item.name).includes(string));
+            }
+        },
+        filterSeriesByGenre(string) {
+            if (string == "") {
+                return this.filteredSeries = this.serieList;
+            } else {
+                return this.filteredSeries = this.serieList.filter((element) => element.genres.map((item) => item.name).includes(string));
+            }
+        }
     }
 }
 </script>

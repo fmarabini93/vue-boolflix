@@ -1,7 +1,7 @@
 <template>
   <div id="app">
-    <Header @passText='generateResults' :fGenList='filmGenresList' :tvGenList='tvGenresList'/>
-    <Main :filmList='filmsWCastGenres' :serieList='seriesWCastGenres'/>
+    <Header @passText='generateResults' @passFilmGenre='filterFilmsByGenre' @passTVGenre='filterSeriesByGenre' :fGenList='filmGenresList' :tvGenList='tvGenresList'/>
+    <Main :filmList='filmsWCastGenres' :serieList='seriesWCastGenres' :currentFilmGenre='selectedFilmGenre' :currentSerieGenre='selectedSerieGenre'/>
   </div>
 </template>
 
@@ -22,6 +22,8 @@ export default {
       series: [],
       filmGenresList: [],
       tvGenresList: [],
+      selectedFilmGenre: "",
+      selectedSerieGenre: "",
       filmsWCastGenres: [],
       seriesWCastGenres: []
     }
@@ -48,8 +50,8 @@ export default {
         this.getCast(this.series);
         this.getGenres(this.series);
       })
-    this.filmsWCastGenres = this.films;
-    this.seriesWCastGenres = this.series;
+      this.filmsWCastGenres = this.films;
+      this.seriesWCastGenres = this.series;
     },
     getCast(array) {
       array.forEach(
@@ -82,6 +84,12 @@ export default {
             }
             )}
         })
+    },
+    filterFilmsByGenre(string) {
+      this.selectedFilmGenre = string;
+    },
+    filterSeriesByGenre(string) {
+      this.selectedSerieGenre = string;
     }
   },
   created() {

@@ -2,11 +2,11 @@
     <header class="d-flex justify-content-between align-items-center p-3">
         <img src="../images/logo.png" alt="Logo">
         <div>
-            <select name="film" id="filmGenres">
+            <select class="border border-danger" @change="$emit('passFilmGenre', selectedFilmGenre)" v-model="selectedFilmGenre">
                 <option hidden>Filter films by genre</option>
                 <option v-for="genre,index in fGenList" :key="index">{{genre.name}}</option>
             </select>
-            <select name="tv" id="tvGenres">
+            <select class="border border-danger" @change="$emit('passTVGenre', selectedTVGenre)" v-model="selectedTVGenre">
                 <option hidden>Filter series by genre</option>
                 <option v-for="genre,index in tvGenList" :key="index">{{genre.name}}</option>
             </select>
@@ -23,7 +23,9 @@ export default {
     name: "Header",
     data() {
         return {
-            searchText: ""
+            searchText: "",
+            selectedFilmGenre: "",
+            selectedTVGenre: ""
         }
     },
     props: {
@@ -57,6 +59,8 @@ export default {
 
         select {
             margin: 0 20px;
+            color: $light;
+            background-color: transparent;
         }
     }
 </style>
