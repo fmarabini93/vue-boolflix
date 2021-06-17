@@ -3,11 +3,11 @@
         <img src="../images/logo.png" alt="Logo">
         <div>
             <select class="border border-danger" @change="$emit('passFilmGenre', selectedFilmGenre)" v-model="selectedFilmGenre">
-                <option hidden>Filter films by genre</option>
+                <option disabled selected>Filter films by genre</option>
                 <option v-for="genre,index in fGenList" :key="index">{{genre.name}}</option>
             </select>
             <select class="border border-danger" @change="$emit('passTVGenre', selectedTVGenre)" v-model="selectedTVGenre">
-                <option hidden>Filter series by genre</option>
+                <option disabled selected>Filter series by genre</option>
                 <option v-for="genre,index in tvGenList" :key="index">{{genre.name}}</option>
             </select>
         </div>
