@@ -4,7 +4,6 @@
     <Main :filmList='filmsWCastGenres' :serieList='seriesWCastGenres' :currentFilmGenre='selectedFilmGenre' :currentSerieGenre='selectedSerieGenre'/>
   </div>
 </template>
-
 <script>
 import axios from 'axios';
 import Header from './components/Header'
